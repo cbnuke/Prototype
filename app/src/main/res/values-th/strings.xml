@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">แบบอย่าง</string>
+    <string name="action_settings">ตั้งค่า</string>
+    <string name="navigation_drawer_close">ปิดเมนู</string>
+    <string name="navigation_drawer_open">เปิดเมนู</string>
+    <string name="press_to_exit">กดอีกครั้งเพื่อออก</string>
+    <string name="btn_login">เข้าระบบ</string>
+    <string name="btn_register">สมัครสมาชิก</string>
+</resources>

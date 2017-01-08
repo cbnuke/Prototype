@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#03A9F4</color>
+    <color name="colorPrimaryDark">#0277BD</color>
+    <color name="colorAccent">#01579B</color>
+
+    <color name="colorBG">#FFFFFF</color>
+
+    <color name="pinkLight">#FCE4EC</color>
+    <color name="pinkSoft">#F48FB1</color>
+    <color name="pinkMedium">#E91E63</color>
+    <color name="pinkDark">#C2185B</color>
+
+    <color name="redSoft">#F44336</color>
+    <color name="redMedium">#F44336</color>
+    <color name="redDark">#D32F2F</color>
+
+    <color name="purpleSoft">#CE93D8</color>
+    <color name="purpleMedium">#9C27B0</color>
+    <color name="purpleDark">#7B1FA2</color>
+
+    <color name="buttonText">#FAFAFA</color>
+    <color name="disableText">#424242</color>
+    <color name="disableBg">#9E9E9E</color>
+</resources>
