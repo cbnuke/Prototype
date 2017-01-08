@@ -59,7 +59,9 @@
                 android:layout_marginBottom="24dp"
                 android:layout_marginTop="24dp"
                 android:padding="12dp"
-                android:text="@string/btn_login"/>
+                android:text="@string/btn_login"
+                android:background="@drawable/button_control_raised_red"
+                android:textColor="@color/button_selector"/>
 
             <TextView
                 android:id="@+id/btnRegister"
