@@ -59,7 +59,7 @@ public class StatusQueue {
         private String dep_name_en;
         private String dep_lat;
         private String dep_long;
-        private String wait;
+        private String current_queue;
 
         public String getQd_id() {
             return qd_id;
@@ -149,12 +149,12 @@ public class StatusQueue {
             this.dep_long = dep_long;
         }
 
-        public String getWait() {
-            return wait;
+        public String getCurrent_queue() {
+            return current_queue;
         }
 
-        public void setWait(String wait) {
-            this.wait = wait;
+        public void setCurrent_queue(String current_queue) {
+            this.current_queue = current_queue;
         }
     }
 }

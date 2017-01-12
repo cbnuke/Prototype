@@ -36,7 +36,18 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         StatusQueue.DataEntity queue = mQueues.get(position);
         holder.txtDep.setText(queue.getDep_name_th());
         holder.txtStatus.setText(queue.getQd_status());
-        holder.txtWait.setText(mContext.getString(R.string.txtWait) + queue.getWait());
+        String c_q;
+        if (queue.getCurrent_queue() == null) {
+            c_q = "0";
+        } else {
+            c_q = queue.getCurrent_queue();
+        }
+        holder.txtCQ.setText("Current Queue  : " + c_q);
+        holder.txtUQ.setText("Your Queue       : " + queue.getQd_order_number());
+
+        if (queue.getQd_status().equalsIgnoreCase("done")) {
+            holder.txtUQ.setText("");
+        }
     }
 
     @Override
@@ -46,14 +57,16 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView txtDep;
-        public TextView txtWait;
+        public TextView txtCQ;
+        public TextView txtUQ;
         public TextView txtStatus;
 
         public ViewHolder(View view) {
             super(view);
             txtDep = (TextView) view.findViewById(R.id.txtDep);
             txtStatus = (TextView) view.findViewById(R.id.txtStatus);
-            txtWait = (TextView) view.findViewById(R.id.txtWait);
+            txtCQ = (TextView) view.findViewById(R.id.txtCQ);
+            txtUQ = (TextView) view.findViewById(R.id.txtUQ);
         }
     }
 

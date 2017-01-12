@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.cbnuke.prototype.databinding.FragmentHomeBinding;
 import com.cbnuke.prototype.model.DataLogin;
+import com.cbnuke.prototype.model.StatusAppoint;
 import com.cbnuke.prototype.model.StatusLogin;
 import com.cbnuke.prototype.model.StatusPatient;
 import com.cbnuke.prototype.model.StatusQueue;
@@ -88,6 +89,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (view.getId() == binding.tbApp.getId()) {
             binding.tbApp.setChecked(true);
             binding.tbQueue.setChecked(false);
+            loadAppoint();
 
         } else if (view.getId() == binding.tbQueue.getId()) {
             binding.tbApp.setChecked(false);
@@ -142,6 +144,57 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             super.onPostExecute(statusQueue);
             if (!statusQueue.getStatus().isEmpty() && statusQueue.getStatus().equalsIgnoreCase("success")) {
                 mAdapter = new QueueAdapter(getContext(), statusQueue.getData());
+                mRecyclerView.setAdapter(mAdapter);
+            }
+        }
+    }
+
+    public void loadAppoint() {
+        CheckAppoint checkAppoint = new CheckAppoint();
+        checkAppoint.execute(dataLogin);
+    }
+
+    class CheckAppoint extends AsyncTask<DataLogin, Void, StatusAppoint> {
+        private String defaultIP = "http://10.209.100.43/HostpitalSmartQ/api/appoint";
+        private OkHttpClient okHttpClient = new OkHttpClient();
+
+        @Override
+        protected StatusAppoint doInBackground(DataLogin... dataLogins) {
+            RequestBody formBody = new FormBody.Builder()
+                    .add("HN", dataLogins[0].getHW())
+                    .build();
+            Request.Builder builder = new Request.Builder();
+            Request request = builder
+                    .url(defaultIP)
+                    .post(formBody)
+                    .build();
+            try {
+                Response response = okHttpClient.newCall(request).execute();
+                StatusAppoint statusAppoint = new StatusAppoint();
+                if (response.isSuccessful()) {
+                    Gson gson = new GsonBuilder().create();
+                    try {
+                        return gson.fromJson(response.body().string(), StatusAppoint.class);
+                    } catch (JsonSyntaxException e) {
+                        statusAppoint.setStatus("fail");
+                    }
+                } else {
+                    statusAppoint.setStatus("fail");
+                }
+                response.close();
+                return statusAppoint;
+            } catch (IOException e) {
+                StatusAppoint statusAppoint = new StatusAppoint();
+                statusAppoint.setStatus("fail");
+                return statusAppoint;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(StatusAppoint statusAppoint) {
+            super.onPostExecute(statusAppoint);
+            if (!statusAppoint.getStatus().isEmpty() && statusAppoint.getStatus().equalsIgnoreCase("success")) {
+                mAdapter = new AppointAdapter(getContext(), statusAppoint.getData());
                 mRecyclerView.setAdapter(mAdapter);
             }
         }
