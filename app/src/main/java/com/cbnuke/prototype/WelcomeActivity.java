@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.cbnuke.prototype.databinding.ActivityWelcomeBinding;
 import com.cbnuke.prototype.model.DataLogin;
 import com.cbnuke.prototype.model.StatusLogin;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -30,6 +31,7 @@ import okhttp3.Response;
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivityWelcomeBinding binding;
+    String firebaseToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,18 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         binding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
 
         binding.btnLogin.setOnClickListener(this);
+
+        //Get token
+        firebaseToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d("DevCBNUKE", "Token : " + firebaseToken);
+
+        //Data from noti
+        if (getIntent().getExtras() != null) {
+            for (String key : getIntent().getExtras().keySet()) {
+                String value = getIntent().getExtras().getString(key);
+                Log.d("DevCBNUKE", "Key: " + key + " Value: " + value);
+            }
+        }
     }
 
     @Override
@@ -60,7 +74,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
             binding.edtHN.setError(null);
         }
 
-        if (pw.isEmpty() || pw.length() == 13) {
+        if (pw.isEmpty()) {
             binding.edtPass.setError("length 13 characters");
             valid = false;
         } else {
@@ -80,30 +94,18 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
         binding.btnLogin.setEnabled(false);
 
-//        final ProgressDialog progressDialog = new ProgressDialog(this,
-//                R.style.AppTheme_Dialog);
-//        progressDialog.setIndeterminate(true);
-//        progressDialog.setMessage("Authenticating...");
-//        progressDialog.show();
-
         String hn = binding.edtHN.getText().toString();
         String pw = binding.edtPass.getText().toString();
         String token = "12354546";
+        if (firebaseToken != null && !firebaseToken.isEmpty()) {
+            token = firebaseToken;
+        } else {
+            token = "";
+        }
 
         DataLogin dataLogin = new DataLogin(hn, pw, token);
         CheckLogin checkLogin = new CheckLogin(getApplicationContext());
         checkLogin.execute(dataLogin);
-//        // TODO: Implement your own authentication logic here.
-//
-//        new android.os.Handler().postDelayed(
-//                new Runnable() {
-//                    public void run() {
-//                        // On complete call either onLoginSuccess or onLoginFailed
-//                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                        // onLoginFailed();
-//                        progressDialog.dismiss();
-//                    }
-//                }, 3000);
     }
 
     class CheckLogin extends AsyncTask<DataLogin, Void, StatusLogin> {
@@ -165,7 +167,12 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         @Override
         protected void onPostExecute(StatusLogin statusLogin) {
             super.onPostExecute(statusLogin);
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            if (!statusLogin.getStatus().isEmpty() && statusLogin.getStatus().equalsIgnoreCase("success")) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            } else {
+                Toast.makeText(getApplication(), "Login failed", Toast.LENGTH_SHORT).show();
+                binding.btnLogin.setEnabled(true);
+            }
 //            dialog.dismiss();
         }
     }
