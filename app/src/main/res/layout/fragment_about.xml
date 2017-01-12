@@ -1,4 +1,5 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -11,45 +12,432 @@
 
             <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 card_view:cardCornerRadius="4dp">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:text="Test" />
+                    <ImageView
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        app:srcCompat="@drawable/about_jim"
+                        android:id="@+id/imageView3"
+                        android:layout_marginTop="8dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="16dp"/>
+
+                    <TextView
+                        android:text="AMNART  RATTANAMUANG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView3"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView3"
+                        android:textSize="18sp"
+                        android:layout_marginTop="20dp" />
+
+
+                    <TextView
+                        android:text="Candidate of Master degree  "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVJ1"
+                        android:layout_below="@+id/textView3"
+                        android:layout_toEndOf="@+id/imageView3"
+                        />
+                    <TextView
+                        android:text="in Computer Science  "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVJ2"
+                        android:layout_below="@+id/txtVJ1"
+                        android:layout_toEndOf="@+id/imageView3"
+                        />
+                    <TextView
+                        android:text="Khon Kaen University"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVJ3"
+                        android:layout_below="@+id/txtVJ2"
+                        android:layout_toEndOf="@+id/imageView3"/>
+                    <TextView
+                        android:text=" "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVJ4"
+                        android:layout_below="@+id/txtVJ3"
+                        android:layout_toEndOf="@+id/imageView3"/>
+
+
+
+                </RelativeLayout>
+
+
+
+
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 card_view:cardCornerRadius="4dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:text="Test" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        app:srcCompat="@drawable/about_mhom"
+                        android:id="@+id/imageView4"
+                        android:layout_marginTop="8dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="16dp"/>
+
+                    <TextView
+                        android:text="THANAPHOP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVMHOM1"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView4"
+                        android:textSize="18sp"
+                        android:layout_marginTop="20dp" />
+
+
+                    <TextView
+                        android:text="NA NAKHONPHANOM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVMHOM2"
+                        android:layout_below="@+id/txtVMHOM1"
+                        android:textSize="18sp"
+                        android:layout_toEndOf="@+id/imageView4"
+                        />
+                    <TextView
+                        android:text="Doctor of Medicine "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVMHOM3"
+                        android:layout_below="@+id/txtVMHOM2"
+                        android:layout_toEndOf="@+id/imageView4"
+                        />
+                    <TextView
+                        android:text="Khon Kaen University"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVMHOM4"
+                        android:layout_below="@+id/txtVMHOM3"
+                        android:layout_toEndOf="@+id/imageView4"/>
+
+                    <TextView
+                        android:text=" "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVMHOM5"
+                        android:layout_below="@+id/txtVMHOM4"
+                        android:layout_toEndOf="@+id/imageView4"/>
+
+
+
+
+
+
+                </RelativeLayout>
+
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 card_view:cardCornerRadius="4dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:text="Test" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        app:srcCompat="@drawable/about_nim"
+                        android:id="@+id/imageView5"
+                        android:layout_marginTop="8dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="16dp"/>
+
+                    <TextView
+                        android:text="SETHTHAWUT KOSALLAVAT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVNim1"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView5"
+                        android:textSize="18sp"
+                        android:layout_marginTop="20dp" />
+
+
+                    <TextView
+                        android:text="Doctor of Medicine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVNim2"
+                        android:layout_below="@+id/txtVNim1"
+                        android:layout_toEndOf="@+id/imageView5"
+                        />
+                    <TextView
+                        android:text="Khon Kaen University "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVNim3"
+                        android:layout_below="@+id/txtVNim2"
+                        android:layout_toEndOf="@+id/imageView5"
+                        />
+
+                    <TextView
+                        android:text=" "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVNim4"
+                        android:layout_below="@+id/txtVNim3"
+                        android:layout_toEndOf="@+id/imageView5"
+                        />
+
+                </RelativeLayout>
             </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                card_view:cardCornerRadius="4dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        app:srcCompat="@drawable/about_meen"
+                        android:id="@+id/imageView6"
+                        android:layout_marginTop="8dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="16dp"/>
+
+                    <TextView
+                        android:text="CHOTIROS KIATPANOMPAE"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVMeen1"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView6"
+                        android:textSize="18sp"
+                        android:layout_marginTop="20dp" />
+
+
+                    <TextView
+                        android:text="Undergraduate student"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVMeen2"
+                        android:layout_below="@+id/txtVMeen1"
+                        android:layout_toEndOf="@+id/imageView6"
+                        />
+                    <TextView
+                        android:text="in Computer of Engineer "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVMeen3"
+                        android:layout_below="@+id/txtVMeen2"
+                        android:layout_toEndOf="@+id/imageView6"
+                        />
+                    <TextView
+                        android:text="Khon Kaen University  "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVMeen4"
+                        android:layout_below="@+id/txtVMeen3"
+                        android:layout_toEndOf="@+id/imageView6"
+                        />
+                    <TextView
+                        android:text=" "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVMeen5"
+                        android:layout_below="@+id/txtVMeen4"
+                        android:layout_toEndOf="@+id/imageView6"
+                        />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                card_view:cardCornerRadius="4dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        app:srcCompat="@drawable/about_namo"
+                        android:id="@+id/imageView7"
+                        android:layout_marginTop="8dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="16dp"/>
+
+                    <TextView
+                        android:text="PRAWEEGAN PINPRASONG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVNamo1"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView7"
+                        android:textSize="18sp"
+                        android:layout_marginTop="20dp" />
+
+
+                    <TextView
+                        android:text="Undergraduate student"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVNamo2"
+                        android:layout_below="@+id/txtVNamo1"
+                        android:layout_toEndOf="@+id/imageView7"
+                        />
+                    <TextView
+                        android:text="in Multimedia Technology and Animation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVNamo3"
+                        android:layout_below="@+id/txtVNamo2"
+                        android:layout_toEndOf="@+id/imageView7"
+                        />
+                    <TextView
+                        android:text="(International program)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVNamo4"
+                        android:layout_below="@+id/txtVNamo3"
+                        android:layout_toEndOf="@+id/imageView7"
+                        />
+                    <TextView
+                        android:text="Khon Kaen University"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVNamo5"
+                        android:layout_below="@+id/txtVNamo4"
+                        android:layout_toEndOf="@+id/imageView7"
+                        />
+                    <TextView
+                        android:text=" "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVNamo6"
+                        android:layout_below="@+id/txtVNamo5"
+                        android:layout_toEndOf="@+id/imageView7"
+                        />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                card_view:cardCornerRadius="4dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        app:srcCompat="@drawable/about_kaew"
+                        android:id="@+id/imageView8"
+                        android:layout_marginTop="8dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="16dp"/>
+
+                    <TextView
+                        android:text="CHANISSARA "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVKaew1"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView8"
+                        android:textSize="18sp"
+                        android:layout_marginTop="20dp" />
+
+
+                    <TextView
+                        android:text="UTHANACHAISAKUL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVKaew2"
+                        android:textSize="18sp"
+                        android:layout_below="@+id/txtVKaew1"
+                        android:layout_toEndOf="@+id/imageView8"
+                        />
+                    <TextView
+                        android:text="Undergraduate student in Dentistry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVKaew3"
+                        android:layout_below="@+id/txtVKaew2"
+                        android:layout_toEndOf="@+id/imageView8"
+                        />
+                    <TextView
+                        android:text="Khon Kaen University"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVKaew4"
+                        android:layout_below="@+id/txtVKaew3"
+                        android:layout_toEndOf="@+id/imageView8"
+                        />
+                <TextView
+                        android:text=" "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVKaew5"
+                        android:layout_below="@+id/txtVKaew4"
+                        android:layout_toEndOf="@+id/imageView8"
+                        />
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+
         </LinearLayout>
     </ScrollView>
 </layout>
