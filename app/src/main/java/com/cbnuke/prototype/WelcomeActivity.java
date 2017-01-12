@@ -1,16 +1,31 @@
 package com.cbnuke.prototype;
 
+import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.cbnuke.prototype.databinding.ActivityWelcomeBinding;
 import com.cbnuke.prototype.model.DataLogin;
+import com.cbnuke.prototype.model.StatusLogin;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+
+import java.io.IOException;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -65,35 +80,93 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
         binding.btnLogin.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(this,
-                R.style.AppTheme_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
+//        final ProgressDialog progressDialog = new ProgressDialog(this,
+//                R.style.AppTheme_Dialog);
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setMessage("Authenticating...");
+//        progressDialog.show();
 
         String hn = binding.edtHN.getText().toString();
         String pw = binding.edtPass.getText().toString();
         String token = "12354546";
 
         DataLogin dataLogin = new DataLogin(hn, pw, token);
-        // TODO: Implement your own authentication logic here.
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+        CheckLogin checkLogin = new CheckLogin(getApplicationContext());
+        checkLogin.execute(dataLogin);
+//        // TODO: Implement your own authentication logic here.
+//
+//        new android.os.Handler().postDelayed(
+//                new Runnable() {
+//                    public void run() {
+//                        // On complete call either onLoginSuccess or onLoginFailed
+//                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                        // onLoginFailed();
+//                        progressDialog.dismiss();
+//                    }
+//                }, 3000);
     }
 
-    class CheckLogin extends AsyncTask<DataLogin, Void, Void> {
+    class CheckLogin extends AsyncTask<DataLogin, Void, StatusLogin> {
+        private String defaultIP = "http://10.209.100.43/HostpitalSmartQ/api/login";
+        private OkHttpClient okHttpClient = new OkHttpClient();
+        private ProgressDialog dialog;
+        private ListActivity activity;
+        private Context context;
+
+        public CheckLogin(Context activity) {
+            context = activity;
+            dialog = new ProgressDialog(context);
+        }
 
         @Override
-        protected Void doInBackground(DataLogin... dataLogins) {
-            return null;
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            dialog = new ProgressDialog(getApplicationContext(),
+//                    R.style.AppTheme_Dialog);
+//            dialog.setIndeterminate(true);
+//            dialog.setMessage("Authenticating...");
+//            dialog.show();
+        }
+
+        @Override
+        protected StatusLogin doInBackground(DataLogin... dataLogins) {
+            RequestBody formBody = new FormBody.Builder()
+                    .add("HN", dataLogins[0].getHW())
+                    .add("PW", dataLogins[0].getPW())
+                    .add("Token", dataLogins[0].getToken())
+                    .build();
+            Request.Builder builder = new Request.Builder();
+            Request request = builder
+                    .url(defaultIP)
+                    .post(formBody)
+                    .build();
+            try {
+                Response response = okHttpClient.newCall(request).execute();
+                StatusLogin statusLogin = new StatusLogin();
+                if (response.isSuccessful()) {
+                    Gson gson = new GsonBuilder().create();
+                    try {
+                        return gson.fromJson(response.body().string(), StatusLogin.class);
+                    } catch (JsonSyntaxException e) {
+                        statusLogin.setStatus("fail");
+                    }
+                } else {
+                    statusLogin.setStatus("fail");
+                }
+                response.close();
+                return statusLogin;
+            } catch (IOException e) {
+                StatusLogin apiLoginStatus = new StatusLogin();
+                apiLoginStatus.setStatus("fail");
+                return apiLoginStatus;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(StatusLogin statusLogin) {
+            super.onPostExecute(statusLogin);
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//            dialog.dismiss();
         }
     }
 
