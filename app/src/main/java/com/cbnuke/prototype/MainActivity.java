@@ -1,5 +1,8 @@
 package com.cbnuke.prototype;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity
 
     public static ActivityMainBinding binding;
     boolean doubleBackToExitPressedOnce = false;
+    public static SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,9 @@ public class MainActivity extends AppCompatActivity
                 Log.d("DevCBNUKE", "Key: " + key + " Value: " + value);
             }
         }
+
+        //SharedPreferences and check login
+        sp = getSharedPreferences("APP_CONFIG", Context.MODE_PRIVATE);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +131,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_about) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_main, new AboutFragment()).commit();
+        } else if (id == R.id.nav_exit) {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.clear();
+            editor.commit();
+            startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

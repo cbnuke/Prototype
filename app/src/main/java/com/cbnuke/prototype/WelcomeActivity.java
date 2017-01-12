@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -32,11 +33,18 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
     ActivityWelcomeBinding binding;
     String firebaseToken;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
+
+        //SharedPreferences and check login
+        sp = getSharedPreferences("APP_CONFIG", Context.MODE_PRIVATE);
+        if (sp.getString("HN", null) != null) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
 
         binding.btnLogin.setOnClickListener(this);
 
@@ -114,6 +122,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         private ProgressDialog dialog;
         private ListActivity activity;
         private Context context;
+        private DataLogin login;
 
         public CheckLogin(Context activity) {
             context = activity;
@@ -132,6 +141,8 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
         @Override
         protected StatusLogin doInBackground(DataLogin... dataLogins) {
+            login = dataLogins[0];
+
             RequestBody formBody = new FormBody.Builder()
                     .add("HN", dataLogins[0].getHW())
                     .add("PW", dataLogins[0].getPW())
@@ -168,6 +179,11 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         protected void onPostExecute(StatusLogin statusLogin) {
             super.onPostExecute(statusLogin);
             if (!statusLogin.getStatus().isEmpty() && statusLogin.getStatus().equalsIgnoreCase("success")) {
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("HN", login.getHW());
+                editor.putString("PW", login.getPW());
+                editor.putString("Token", login.getToken());
+                editor.commit();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             } else {
                 Toast.makeText(getApplication(), "Login failed", Toast.LENGTH_SHORT).show();
