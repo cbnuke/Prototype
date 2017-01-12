@@ -9,4 +9,9 @@
     <string name="btn_register">สมัครสมาชิก</string>
     <string name="txtHN">HN(รหัสผู้ป่วย)</string>
     <string name="txtPass">รหัสประชาชน</string>
+    <string name="app_info">ข้อมูลแอพพลิเคชัน</string>
+    <string name="nav_home">หน้าหลัก</string>
+    <string name="nav_map">แผนที่</string>
+    <string name="nav_about">ผู้พัฒนา</string>
+    <string name="nav_exit">ออกระบบ</string>
 </resources>
