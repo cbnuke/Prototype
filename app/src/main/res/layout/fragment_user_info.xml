@@ -10,25 +10,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="178dp"
-                android:text="Hello World!" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="54dp"
-                android:layout_marginStart="27dp"
-                android:background="@drawable/button_control_raised_red"
-                android:text="Button"
-                android:textColor="@color/button_selector" />
         </LinearLayout>
     </ScrollView>
 </layout>

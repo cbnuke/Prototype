@@ -31,12 +31,12 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_info, container, false);
 
-        binding.textView2.setText("Test test");
+//        binding.textView2.setText("Test test");
 
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_user_info, container, false);
 
-        binding.button.setOnClickListener(this);
+//        binding.button.setOnClickListener(this);
 
         MainActivity.binding.appBaryLayout.setExpanded(true);
         MainActivity.binding.imageParallax.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.kku));
@@ -47,14 +47,14 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == binding.button.getId()) {
-            Toast.makeText(getContext(), "Click", Toast.LENGTH_SHORT).show();
-            Fragment fragment = new AboutFragment();
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.content_main, fragment);
-            fragmentTransaction.commit();
-        }
+//        if (view.getId() == binding.button.getId()) {
+//            Toast.makeText(getContext(), "Click", Toast.LENGTH_SHORT).show();
+//            Fragment fragment = new AboutFragment();
+//            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(R.id.content_main, fragment);
+//            fragmentTransaction.commit();
+//        }
 
     }
 }

@@ -3,12 +3,14 @@ package com.cbnuke.prototype;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.cbnuke.prototype.databinding.ActivityWelcomeBinding;
+import com.cbnuke.prototype.model.DataLogin;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,37 +22,34 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         binding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
 
         binding.btnLogin.setOnClickListener(this);
-        binding.btnRegister.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == binding.btnLogin.getId()) {
-            startActivity(new Intent(this, MainActivity.class));
-            //login();
-        } else if (view.getId() == binding.btnRegister.getId()) {
-            Toast.makeText(getApplicationContext(), "Go to register", Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(this, MainActivity.class));
+            login();
         }
     }
 
     public boolean validate() {
         boolean valid = true;
 
-        String email = binding.inputEmail.getText().toString();
-        String password = binding.inputPassword.getText().toString();
+        String hn = binding.edtHN.getText().toString();
+        String pw = binding.edtPass.getText().toString();
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.inputEmail.setError("enter a valid email address");
+        if (hn.isEmpty()) {
+            binding.edtHN.setError("enter a valid HN");
             valid = false;
         } else {
-            binding.inputEmail.setError(null);
+            binding.edtHN.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            binding.inputPassword.setError("between 4 and 10 alphanumeric characters");
+        if (pw.isEmpty() || pw.length() == 13) {
+            binding.edtPass.setError("length 13 characters");
             valid = false;
         } else {
-            binding.inputPassword.setError(null);
+            binding.edtPass.setError(null);
         }
 
         return valid;
@@ -72,9 +71,11 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String email = binding.inputEmail.getText().toString();
-        String password = binding.inputPassword.getText().toString();
+        String hn = binding.edtHN.getText().toString();
+        String pw = binding.edtPass.getText().toString();
+        String token = "12354546";
 
+        DataLogin dataLogin = new DataLogin(hn, pw, token);
         // TODO: Implement your own authentication logic here.
 
         new android.os.Handler().postDelayed(
@@ -86,6 +87,14 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                         progressDialog.dismiss();
                     }
                 }, 3000);
+    }
+
+    class CheckLogin extends AsyncTask<DataLogin, Void, Void> {
+
+        @Override
+        protected Void doInBackground(DataLogin... dataLogins) {
+            return null;
+        }
     }
 
 }

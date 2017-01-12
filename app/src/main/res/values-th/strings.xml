@@ -7,4 +7,6 @@
     <string name="press_to_exit">กดอีกครั้งเพื่อออก</string>
     <string name="btn_login">เข้าระบบ</string>
     <string name="btn_register">สมัครสมาชิก</string>
+    <string name="txtHN">HN(รหัสผู้ป่วย)</string>
+    <string name="txtPass">รหัสประชาชน</string>
 </resources>
